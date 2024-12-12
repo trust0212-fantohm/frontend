@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { gql, useQuery } from '@apollo/client'
 import Header from '@/components/header'
 import NFT from '@/components/nft'
@@ -19,8 +19,13 @@ const query = gql`
 `
 
 export default function Home() {
-  const { data, loading } = useQuery(query)
+  const { data, loading, refetch } = useQuery(query)
   const nfts = useMemo(() => (data?.nfts ? data.nfts : []), [data])
+
+  useEffect(() => {
+    const timer = setInterval(() => refetch(), 5000)
+    return () => clearInterval(timer)
+  }, [refetch])
 
   return (
     <>
