@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #14141f;
+  --foreground: #ffffff;
+}
+
+body {
+  @apply bg-background font-urbanist text-foreground;
+}
+
+.container {
+  @apply mx-auto w-full max-w-[1440px] px-5;
+}
